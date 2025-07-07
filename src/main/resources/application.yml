@@ -1,7 +1,7 @@
 spring:
   sql:
     init:
-      mode: always  # запускать data.sql
+      mode: never
       platform: h2
   datasource:
     url: jdbc:h2:mem:testdb
@@ -10,6 +10,8 @@ spring:
     password:
   jpa:
     hibernate:
-      ddl-auto: create  # автоматически создавать таблицы из @Entity
-    defer-datasource-initialization: true  # дождаться создания таблиц перед выполнением data.sql
+      ddl-auto: none
+    defer-datasource-initialization: false
     show-sql: true
+    flyway:
+      enabled: true
