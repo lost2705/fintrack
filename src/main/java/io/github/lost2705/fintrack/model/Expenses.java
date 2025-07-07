@@ -7,13 +7,11 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "transactions")
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Transaction {
+public class Expenses {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,5 +25,5 @@ public class Transaction {
 
     @ManyToOne
     @JoinColumn(name = "category_id")
-    private Category category;
+    private Categories categories;
 }

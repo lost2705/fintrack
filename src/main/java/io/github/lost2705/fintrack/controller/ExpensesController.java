@@ -1,7 +1,7 @@
 package io.github.lost2705.fintrack.controller;
 
-import io.github.lost2705.fintrack.model.Expense;
-import io.github.lost2705.fintrack.repository.ExpenseRepository;
+import io.github.lost2705.fintrack.model.Expenses;
+import io.github.lost2705.fintrack.repository.ExpensesRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,12 +10,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/expenses")
 @RequiredArgsConstructor
-public class ExpenseController {
+public class ExpensesController {
 
-    private final ExpenseRepository expenseRepository;
+    private final ExpensesRepository expenseRepository;
 
     @GetMapping
-    public List<Expense> getAll() {
+    public List<Expenses> getAll() {
         return expenseRepository.findAll();
     }
 }
