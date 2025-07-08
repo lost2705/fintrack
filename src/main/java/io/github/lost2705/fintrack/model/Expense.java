@@ -3,6 +3,7 @@ package io.github.lost2705.fintrack.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
@@ -10,13 +11,19 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Categories {
+public class Expense {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    private BigDecimal amount;
 
-    private LocalDateTime createdAt;
+    private String description;
+
+    private LocalDateTime date;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
 }
