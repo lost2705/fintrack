@@ -1,39 +1,22 @@
 package io.github.lost2705.fintrack.mapper;
 
 import io.github.lost2705.fintrack.dto.TransactionDto;
-import io.github.lost2705.fintrack.model.Category;
+import io.github.lost2705.fintrack.dto.TransactionRequest;
+import io.github.lost2705.fintrack.dto.TransactionResponse;
 import io.github.lost2705.fintrack.model.Transaction;
-import io.github.lost2705.fintrack.repository.CategoryRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
-@Component
-@RequiredArgsConstructor
-public class TransactionMapper {
+@Mapper(componentModel = "spring")
+public interface TransactionMapper {
 
-    private final CategoryRepository categoryRepository;
+    TransactionDto toDto(TransactionRequest request);
 
-    public TransactionDto toDto(Transaction entity) {
-        TransactionDto dto = new TransactionDto();
-        dto.setId(entity.getId());
-        dto.setAmount(entity.getAmount());
-        dto.setDate(entity.getDate());
-        dto.setDescription(entity.getDescription());
-        dto.setCategoryId(entity.getCategory().getId());
-        return dto;
-    }
+    TransactionDto toDto(Transaction entity);
 
-    public Transaction toEntity(TransactionDto dto) {
-        Transaction entity = new Transaction();
-        entity.setId(dto.getId());
-        entity.setAmount(dto.getAmount());
-        entity.setDate(dto.getDate());
-        entity.setDescription(dto.getDescription());
+    Transaction toEntity(TransactionDto dto);
 
-        Category category = categoryRepository.findById(dto.getCategoryId())
-                .orElseThrow(() -> new IllegalArgumentException("Категория не найдена: id = " + dto.getCategoryId()));
-        entity.setCategory(category);
+    @Mapping(target = "category", expression = "java(transaction.getCategory().getName())")
+    TransactionResponse toResponse(Transaction transaction);
 
-        return entity;
-    }
 }
