@@ -16,8 +16,7 @@ public interface TransactionMapper {
 
     Transaction toEntity(TransactionDto dto);
 
-    @Mapping(source = "category.name", target = "category")
-    TransactionResponse toResponse(Transaction entity);
+    @Mapping(target = "category", expression = "java(transaction.getCategory().getName())")
+    TransactionResponse toResponse(Transaction transaction);
 
-    TransactionResponse toResponse(TransactionDto dto);
 }

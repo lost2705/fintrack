@@ -1,7 +1,5 @@
 package io.github.lost2705.fintrack.controller;
 
-
-
 import io.github.lost2705.fintrack.dto.TransactionDto;
 import io.github.lost2705.fintrack.dto.TransactionRequest;
 import io.github.lost2705.fintrack.dto.TransactionResponse;
@@ -12,9 +10,8 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
-
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,8 +21,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/transactions")
+@Tag(name = "Транзакции", description = "Управление расходами и доходами")
 public class TransactionController {
-
     private final TransactionService transactionService;
     private final TransactionMapper transactionMapper;
 
@@ -42,8 +39,8 @@ public class TransactionController {
     @PostMapping
     public ResponseEntity<TransactionResponse> createTransaction(@Valid @RequestBody TransactionRequest request) {
         TransactionDto dto = transactionMapper.toDto(request);
-        Transaction created = transactionService.create(dto); // Возвращаем Transaction
-        TransactionResponse response = transactionMapper.toResponse(created); // Маппим Transaction в Response
+        Transaction created = transactionService.create(dto);
+        TransactionResponse response = transactionMapper.toResponse(created);
         return ResponseEntity.status(201).body(response);
     }
 
@@ -56,10 +53,7 @@ public class TransactionController {
             @Parameter(description = "Дата по") @RequestParam(required = false)
             @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate to
     ) {
-        List<TransactionDto> dtos = transactionService.findAllFiltered(null, from, to);
-        List<TransactionResponse> responses = dtos.stream()
-                .map(transactionMapper::toResponse)
-                .toList();
+        List<TransactionResponse> responses = transactionService.findTransactions(category, from, to);
         return ResponseEntity.ok(responses);
     }
 }

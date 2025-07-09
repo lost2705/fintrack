@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -24,16 +25,17 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public List<TransactionDto> findAll() {
-        return transactionRepository.findAll().stream()
+        return transactionRepository.findAll()
+                .stream()
                 .map(transactionMapper::toDto)
                 .toList();
     }
 
     @Override
     public TransactionDto findById(Long id) {
-        Transaction transaction = transactionRepository.findById(id)
+        return transactionRepository.findById(id)
+                .map(transactionMapper::toDto)
                 .orElseThrow(() -> new IllegalArgumentException("Транзакция не найдена: id = " + id));
-        return transactionMapper.toDto(transaction);
     }
 
     @Override
@@ -63,23 +65,13 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public void delete(Long id) {
-        if (!transactionRepository.existsById(id)) {
-            throw new IllegalArgumentException("Транзакция не найдена: id = " + id);
-        }
         transactionRepository.deleteById(id);
-    }
-
-    @Override
-    public List<TransactionDto> findAllFiltered(Long categoryId, LocalDate from, LocalDate to) {
-        return transactionRepository.findFiltered(categoryId, from, to).stream()
-                .map(transactionMapper::toDto)
-                .toList();
     }
 
     @Override
     public List<TransactionResponse> findTransactions(String category, LocalDate from, LocalDate to) {
         return transactionRepository.findAll().stream()
-                .filter(t -> category == null || t.getCategory().getName().equals(category))
+                .filter(t -> category == null || Objects.equals(t.getCategory().getName(), category))
                 .filter(t -> from == null || !t.getDate().isBefore(from))
                 .filter(t -> to == null || !t.getDate().isAfter(to))
                 .map(transactionMapper::toResponse)
