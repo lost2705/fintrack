@@ -14,7 +14,7 @@ public interface TransactionMapper {
 
     TransactionDto toDto(Transaction entity);
 
-    Transaction toEntity(TransactionDto dto); // category будет устанавливаться вручную в сервисе
+    Transaction toEntity(TransactionDto dto);
 
     @Mapping(source = "category.name", target = "category")
     TransactionResponse toResponse(Transaction entity);

@@ -42,10 +42,8 @@ public class TransactionServiceImpl implements TransactionService {
         Category category = categoryRepository.findById(dto.getCategoryId())
                 .orElseThrow(() -> new IllegalArgumentException("Категория не найдена: id = " + dto.getCategoryId()));
         entity.setCategory(category);
-        return transactionRepository.save(entity); // ← возвращаем Transaction
+        return transactionRepository.save(entity);
     }
-
-
 
     @Override
     public TransactionDto update(Long id, TransactionDto dto) {
@@ -55,7 +53,10 @@ public class TransactionServiceImpl implements TransactionService {
         existing.setAmount(dto.getAmount());
         existing.setDate(dto.getDate());
         existing.setDescription(dto.getDescription());
-        existing.setCategory(transactionMapper.toEntity(dto).getCategory());
+
+        Category category = categoryRepository.findById(dto.getCategoryId())
+                .orElseThrow(() -> new IllegalArgumentException("Категория не найдена: id = " + dto.getCategoryId()));
+        existing.setCategory(category);
 
         return transactionMapper.toDto(transactionRepository.save(existing));
     }
@@ -78,7 +79,7 @@ public class TransactionServiceImpl implements TransactionService {
     @Override
     public List<TransactionResponse> findTransactions(String category, LocalDate from, LocalDate to) {
         return transactionRepository.findAll().stream()
-                .filter(t -> category == null || t.getCategory().equals(category))
+                .filter(t -> category == null || t.getCategory().getName().equals(category))
                 .filter(t -> from == null || !t.getDate().isBefore(from))
                 .filter(t -> to == null || !t.getDate().isAfter(to))
                 .map(transactionMapper::toResponse)
