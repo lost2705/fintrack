@@ -1,6 +1,7 @@
 package io.github.lost2705.fintrack.mapper;
 
 import io.github.lost2705.fintrack.dto.CategoryDto;
+import io.github.lost2705.fintrack.dto.CategoryRequest;
 import io.github.lost2705.fintrack.model.Category;
 import org.springframework.stereotype.Component;
 
@@ -20,4 +21,11 @@ public class CategoryMapper {
         entity.setName(dto.getName());
         return entity;
     }
+
+    public CategoryDto toDto(CategoryRequest request) {
+        CategoryDto dto = new CategoryDto();
+        dto.setName(request.name());
+        return dto;
+    }
+
 }

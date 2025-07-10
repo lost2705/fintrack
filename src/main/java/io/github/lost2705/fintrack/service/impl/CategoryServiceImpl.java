@@ -26,17 +26,17 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    public CategoryDto create(CategoryDto dto) {
+        Category entity = mapper.toEntity(dto);
+        Category saved = repository.save(entity);
+        return mapper.toDto(saved);
+    }
+
+    @Override
     public CategoryDto findById(Long id) {
         Category category = repository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Категория не найдена: id = " + id));
         return mapper.toDto(category);
-    }
-
-    @Override
-    public CategoryDto create(CategoryDto dto) {
-        Category category = mapper.toEntity(dto);
-        Category saved = repository.save(category);
-        return mapper.toDto(saved);
     }
 
     @Override
