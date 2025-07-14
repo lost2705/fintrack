@@ -4,6 +4,8 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 public record SubcategoryRequest(
-        @NotBlank(message = "Название обязательно") String name,
-        @NotNull(message = "ID категории обязателен") Long categoryId
+        @NotBlank(message = "Название обязательно")
+        String name,
+        @NotNull(message = "ID категории обязателен")
+        Long categoryId
 ) {}

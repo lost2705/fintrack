@@ -12,15 +12,7 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class SubcategoryMapper {
-
     private final CategoryRepository categoryRepository;
-
-    public SubcategoryDto toDto(SubcategoryRequest request) {
-        SubcategoryDto dto = new SubcategoryDto();
-        dto.setName(request.name());
-        dto.setCategoryId(request.categoryId());
-        return dto;
-    }
 
     public SubcategoryDto toDto(Subcategory entity) {
         SubcategoryDto dto = new SubcategoryDto();
@@ -38,6 +30,13 @@ public class SubcategoryMapper {
                 .orElseThrow(() -> new IllegalArgumentException("Категория не найдена: id = " + dto.getCategoryId()));
         entity.setCategory(category);
         return entity;
+    }
+
+    public SubcategoryDto toDto(SubcategoryRequest request) {
+        SubcategoryDto dto = new SubcategoryDto();
+        dto.setName(request.name());
+        dto.setCategoryId(request.categoryId());
+        return dto;
     }
 
     public SubcategoryResponse toResponse(Subcategory entity) {
