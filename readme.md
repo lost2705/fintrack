@@ -19,7 +19,7 @@ It helps users track their income and expenses, organize them by category, and g
 ✅ MapStruct-based mapping logic  
 ✅ Category management  
 ✅ Flyway-based DB versioning  
-⬜ Telegram bot integration (coming soon)  
+✅ Basic Telegram bot integration (echo + manual registration via TelegramBots API) is implemented; command‑based finance management is in progress  
 ⬜ Monthly summaries and analytics (planned)  
 ⬜ PostgreSQL support (planned)
 
@@ -68,7 +68,7 @@ Flyway migration automatically creates:
 - [x] DTO mapping with MapStruct
 - [x] Validation and exception handling
 - [x] Swagger UI docs
-- [ ] Telegram bot commands and setup
+- [x] Telegram bot commands and setup
 - [ ] User authentication (optional)
 - [ ] Budgeting goals and monthly reports
 
