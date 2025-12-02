@@ -15,3 +15,8 @@ spring:
     show-sql: true
     flyway:
       enabled: true
+
+telegram:
+  bot:
+    username: your_bot_username
+    token: your_bot_token
