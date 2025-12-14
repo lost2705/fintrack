@@ -40,10 +40,15 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public Transaction create(TransactionDto dto) {
-        Transaction entity = transactionMapper.toEntity(dto);
         Category category = categoryRepository.findById(dto.getCategoryId())
                 .orElseThrow(() -> new IllegalArgumentException("Категория не найдена: id = " + dto.getCategoryId()));
+
+        Transaction entity = new Transaction();
+        entity.setAmount(dto.getAmount());
+        entity.setDate(dto.getDate());
+        entity.setDescription(dto.getDescription());
         entity.setCategory(category);
+
         return transactionRepository.save(entity);
     }
 

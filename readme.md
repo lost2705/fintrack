@@ -71,6 +71,19 @@ Feel free to fork, use, and suggest improvements.
 
 ---
 
+📌 Roadmap
+This project was built for learning purposes and to experiment with various libraries and tools. There are ideas for potential extensions, but they are not guaranteed to be implemented:
+
+More advanced Telegram bot commands (filters, summaries, monthly reports)
+
+Category name support in Telegram commands (instead of raw IDs)
+
+User authentication and multi-user support
+
+PostgreSQL as the primary database
+
+Budget goals and analytics dashboards
+
 ## 📄 License
 
 This project is licensed under the MIT License – see the [LICENSE](LICENSE) file for details.
