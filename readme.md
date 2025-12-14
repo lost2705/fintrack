@@ -1,35 +1,46 @@
-# 📊 FinTrack &nbsp;![Java](https://img.shields.io/badge/Java-21-blue?logo=java) ![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.x-brightgreen?logo=spring) ![License](https://img.shields.io/github/license/lost2705/fintrack)
+# 📊 FinTrack
 
-**FinTrack** is a personal finance tracker with a web interface and Telegram bot.  
-Designed to help users stay on top of their daily expenses and build better budgeting habits.
+[![Java](https://img.shields.io/badge/Java-21-blue)](https://www.oracle.com/java/)
+[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.x-brightgreen)](https://spring.io/projects/spring-boot)
+[![License](https://img.shields.io/badge/license-MIT-lightgrey)]()
+
+**FinTrack** is a personal finance tracker with a web interface and Telegram bot (in progress).  
+It helps users track their income and expenses, organize them by category, and get better control over their budget.
 
 ---
 
-## 🚀 Features (in development)
+## ✨ Features
 
-- ✅ Add and view personal expenses
-- ✅ Category-based tracking (food, transport, travel, etc.)
-- ✅ Database schema managed via Flyway
-- ⏳ REST API for expense management
-- ⏳ Telegram bot integration
-- ⏳ Monthly summaries and reports
-- ⏳ PostgreSQL support
+✅ Add and view personal transactions  
+✅ Filter by category and date  
+✅ Validation with meaningful error messages  
+✅ Data transfer via DTOs  
+✅ REST API for expense management  
+✅ MapStruct-based mapping logic  
+✅ Category management  
+✅ Flyway-based DB versioning  
+✅ Basic Telegram bot integration (echo + manual registration via TelegramBots API) is implemented; command‑based finance management is in progress  
+⬜ Monthly summaries and analytics (planned)  
+⬜ PostgreSQL support (planned)
 
 ---
 
 ## 🛠 Tech Stack
 
-- **Language**: Java 21  
-- **Framework**: Spring Boot 3  
-- **Persistence**: Spring Data JPA  
-- **Database**: H2 (in-memory), PostgreSQL (planned)  
-- **Migration Tool**: Flyway  
-- **Build Tool**: Maven  
-- **Bot Platform**: Telegram Bot API  
+| Layer        | Technology              |
+|--------------|--------------------------|
+| **Language** | Java 21                 |
+| **Framework**| Spring Boot 3           |
+| **Database** | H2 (in-memory), PostgreSQL (planned) |
+| **Persistence** | Spring Data JPA     |
+| **Validation** | Jakarta Validation    |
+| **Migration**  | Flyway                |
+| **Mapping**    | MapStruct             |
+| **Build Tool** | Maven                 |
 
 ---
 
-## ▶️ Getting Started
+## 🚀 Getting Started
 
 ```bash
 git clone https://github.com/lost2705/fintrack.git
@@ -37,38 +48,17 @@ cd fintrack
 ./mvnw spring-boot:run
 ```
 
-> By default, FinTrack uses H2 in-memory database.  
-> To switch to PostgreSQL, edit `application.yml`.
+> By default, FinTrack runs on an H2 in-memory database.  
+> To switch to PostgreSQL, configure your `application.yml`.
 
 ---
 
 ## 🧪 Sample Data
 
-Flyway migrations automatically create:
+Flyway migration automatically creates:
 
-- Example categories (e.g., Food, Transport)
-- Sample expenses with timestamps
-
-Perfect for testing UI or REST endpoints.
-
----
-
-## 🧾 Planned Enhancements
-
-- 💬 Multi-user support with authentication
-- 📈 Analytics & charts
-- 📆 Budget planning per category
-- 🌍 Localization (English, Russian)
-- 📦 Docker support
-
----
-
-## 🙌 Contributing
-
-Pull requests are welcome!  
-This project is a backend playground to improve Java and Spring development skills.  
-Feel free to fork, use, and suggest improvements.
-
+- 🗂 Default categories: Food, Transport, Entertainment, etc.
+- 🔄 Example transactions for testing
 ---
 
 📌 Roadmap
