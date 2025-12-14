@@ -59,18 +59,26 @@ Flyway migration automatically creates:
 
 - 🗂 Default categories: Food, Transport, Entertainment, etc.
 - 🔄 Example transactions for testing
-
 ---
 
-## 📌 Roadmap
+📌 Roadmap
+This project was built for learning purposes and to experiment with various libraries and tools. There are ideas for potential extensions, but they are not guaranteed to be implemented:
 
-- [x] Basic CRUD for transactions
-- [x] DTO mapping with MapStruct
-- [x] Validation and exception handling
-- [x] Swagger UI docs
-- [x] Telegram bot commands and setup
-- [ ] User authentication (optional)
-- [ ] Budgeting goals and monthly reports
+More advanced Telegram bot commands (filters, summaries, monthly reports)
+
+Category name support in Telegram commands (instead of raw IDs)
+
+User authentication and multi-user support
+
+PostgreSQL as the primary database
+
+Budget goals and analytics dashboards
+
+## 📄 License
+
+This project is licensed under the MIT License – see the [LICENSE](LICENSE) file for details.
+
+---
 
 ## 👤 Author
 
